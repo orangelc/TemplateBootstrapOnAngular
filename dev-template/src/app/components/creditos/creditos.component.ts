@@ -9,12 +9,11 @@ import { DataLocalService } from '../../services/data-local.service';
   styles: []
 })
 export class CreditosComponent implements OnInit {
-  http: any;
+  
   public creditos: any[];
   public creditoSeleccionado: any;
 
   constructor(private _localService: DataLocalService) {
-
   }
 
   ngOnInit() {
