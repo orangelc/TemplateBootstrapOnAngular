@@ -1,0 +1,71 @@
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h2>
+        <b>Seguimiento</b> de Dispersión de Pagos</h2>
+    </div>
+    <div class="col-md-12 sin-rellenos">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <app-search></app-search>
+          </div>
+        </div>
+        <div class="row">
+          <app-actions class="col-md-12"></app-actions>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container-fluid">
+      <!-- Tabla de registros -->
+      <div class="table-responsive mt-1">
+        <table class="table table-sm table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Consecutivo</th>
+              <th scope="col">Empleado</th>
+              <th scope="col">Puesto</th>
+              <th class="text-center" scope="col">Teléfono</th>
+              <th scope="col">Correo</th>
+              <th class="text-center" scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let registro of dispersiones">
+              <td scope="row">{{ registro.col1 }}</td>
+              <td>{{ registro.col2 }}</td>
+              <td>{{ registro.col3 }}</td>
+              <td class="text-center">{{ registro.col4 }}</td>
+              <td>{{ registro.col5 }}</td>
+              <td class="text-center">
+                <div class="dropdown">
+                  <button class="btn btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <div class="dropdown-menu no-redondo" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" onclick="editar_solicitud()">Editar</a>
+                    <a class="dropdown-item" onclick="eliminar_solicitud()">Eliminar</a>
+                    <a class="dropdown-item" onclick="ver_solicitud()">Ver detalle</a>
+                    <a class="dropdown-item">Más...</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Tabla de registros -->
+    </div>
+    <app-pagination class="col-md-12"></app-pagination>
+  </div>
+</div>
+
+<!-- Modales de la pantalla -->
+<app-registry-modal></app-registry-modal>
+<app-edit-modal></app-edit-modal>
+<app-delete-modal></app-delete-modal>
+<app-export-modal></app-export-modal>
+<app-detail-modal></app-detail-modal>
+<!-- Modales de la pantalla -->
