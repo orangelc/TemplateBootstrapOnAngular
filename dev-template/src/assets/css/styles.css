@@ -45,7 +45,9 @@
 /*DROPDOWN*/
 .dropdown-item:hover, .dropdown-item:focus {
   color: #fff;
-  background-color: #007bfe; }
+  background-color: rgba(0, 0, 0, 0.075);
+  cursor: pointer;
+}
 
 /*GENERALES*/
 .sin-rellenos {
@@ -57,6 +59,15 @@
 
 .sin-margen-izquierdo {
   margin-left: 0; }
+
+.puntero{
+  cursor: pointer;
+
+}
+
+.bordes{
+  border: 1px solid #ced4da;
+}
 
 /*DROPDOWN BUTTON*/
 .btn-dropdown {

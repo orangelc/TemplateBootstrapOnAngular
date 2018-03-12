@@ -16,7 +16,11 @@ export class CobranzaComponent implements OnInit {
   ngOnInit() {
 
     this._localService.getJSON()
-    .subscribe(resp => {this.cobranzas = resp);
+    .subscribe(resp =>
+      {
+      this.cobranzas = resp;
+
+    });
   }
 
 }

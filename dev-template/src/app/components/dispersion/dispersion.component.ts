@@ -16,7 +16,7 @@ export class DispersionComponent implements OnInit {
   ngOnInit() {
 
     this._localService.getJSON()
-    .subscribe(resp => {this.dispersiones = resp);
+    .subscribe(resp => {this.dispersiones = resp;});
   }
 
 }

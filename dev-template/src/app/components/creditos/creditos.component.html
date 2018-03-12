@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12 mt-4">
       <h2>
-        <b>Solicitudes</b> de Crédito</h2>
+        SOLICITUDES<small> de Crédito</small></h2>
     </div>
     <div class="col-md-12 sin-rellenos">
       <div class="container-fluid">
@@ -20,8 +20,8 @@
   <div class="row">
     <div class="container-fluid">
       <!-- Tabla de registros -->
-      <div class="table-responsive mt-1">
-        <table class="table table-sm table-bordered">
+      <div class="table-responsive mt-1 scroll-table bordes">
+        <table class="table table-hover table-sm table-bordered">
           <thead class="thead-dark">
             <tr>
               <th scope="col">Consecutivo</th>
@@ -29,7 +29,7 @@
               <th scope="col">Puesto</th>
               <th class="text-center" scope="col">Teléfono</th>
               <th scope="col">Correo</th>
-              <th class="text-center" scope="col">Actions</th>
+              <th class="text-center" scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -41,12 +41,12 @@
               <td>{{ registro.col5 }}</td>
               <td class="text-center">
                 <div class="dropdown">
-                  <button class="btn btn-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <li class="fa fa-trash mx-2 puntero" onclick="eliminar_solicitud()"></li>
+                  <li class="fa fa-edit mx-2 puntero" (click)="editarSolicitud(registro)"></li>
+                  <a id="dropdownMenuButton" class="puntero" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-ellipsis-v"></i>
-                  </button>
+                  </a>
                   <div class="dropdown-menu no-redondo" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" onclick="editar_solicitud()">Editar</a>
-                    <a class="dropdown-item" onclick="eliminar_solicitud()">Eliminar</a>
                     <a class="dropdown-item" onclick="ver_solicitud()">Ver detalle</a>
                     <a class="dropdown-item">Más...</a>
                   </div>
@@ -57,6 +57,11 @@
         </table>
       </div>
       <!-- Tabla de registros -->
+      <div class="col-md-12 sin-rellenos">
+        <p *ngIf="cantidadCreditos > 1">{{ cantidadCreditos }} registros encontrados.</p>
+        <p *ngIf="cantidadCreditos == 1">{{ cantidadCreditos }} registro encontrado.</p>
+      </div>
+
     </div>
 
     <app-pagination class="col-md-12"></app-pagination>
@@ -67,39 +72,54 @@
 <app-registry-modal></app-registry-modal>
 <app-delete-modal></app-delete-modal>
 <app-export-modal></app-export-modal>
-<app-detail-modal ></app-detail-modal>
+<app-detail-modal></app-detail-modal>
 
 <!-- Modal Editar Solicitud -->
 <div class="modal fade" id="editar_solicitud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-data-backdrop="false">
-<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">EDITAR SOLICITUD</h5>
-    </div>
-    <div class="modal-body">
-      <div class="container">
-        <div class="row">
-          <form class="col-md-6">
-            <div class="form-group">
-              <label for="exampleInputEmail1">{{creditoSeleccionado}}</label>
-              <input type="text" class="form-control no-redondo" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Edad</label>
-              <input type="text" class="form-control no-redondo" id="exampleInputPassword1" placeholder="Password">
-            </div>
-          </form>
+  data-backdrop="false">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">EDITAR SOLICITUD</h5>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <form class="col-md-12">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label name="nombre" for="nombre">Prestatario</label>
+                      <input value="{{creditoSeleccionado.col2}}" name="nombre" type="text" class="form-control no-redondo" id="nombre" placeholder="Nombre del prestatario">
+                    </div>
+                    <div class="form-group">
+                      <label name="nombre" for="nombre">Puesto</label>
+                      <input value="{{creditoSeleccionado.col3}}" name="nombre" type="text" class="form-control no-redondo" id="nombre" placeholder="Puesto del empleado">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label name="nombre" for="nombre">Teléfono</label>
+                      <input value="{{creditoSeleccionado.col4}}" name="nombre" type="text" class="form-control no-redondo" id="nombre" placeholder="Teléfono del prestatario">
+                    </div>
+                    <div class="form-group">
+                      <label name="nombre" for="nombre">Correo electrónico</label>
+                      <input value="{{creditoSeleccionado.col5}}" name="nombre" type="text" class="form-control no-redondo" id="nombre" placeholder="Correo del prestatario">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary no-redondo" data-dismiss="modal">CERRAR</button>
-      <button type="submit" class="btn btn-primary no-redondo">GUARDAR</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary no-redondo" data-dismiss="modal">CERRAR</button>
+        <button type="submit" class="btn btn-primary no-redondo">GUARDAR</button>
+      </div>
     </div>
   </div>
-</div>
 </div>
 <!-- Modal Editar Solicitud -->
 
