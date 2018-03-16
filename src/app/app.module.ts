@@ -21,13 +21,14 @@ import { CobranzaComponent } from './components/cobranza/cobranza.component';
 import { DispersionComponent } from './components/dispersion/dispersion.component';
 import { HomeComponent } from './components/home/home.component';
 import { DataLocalService } from './services/data-local.service';
+import { RegistroComponent } from './components/registro/registro.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: RegistroComponent },
   { path: 'creditos', component: CreditosComponent },
   { path: 'dispersion', component: DispersionComponent },
   { path: 'cobranza', component: CobranzaComponent },
-  { path: '**', component: HomeComponent}
+  { path: '**', component: RegistroComponent}
 ];
 
 @NgModule({
@@ -46,7 +47,8 @@ const routes: Routes = [
     CreditosComponent,
     CobranzaComponent,
     DispersionComponent,
-    HomeComponent
+    HomeComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
